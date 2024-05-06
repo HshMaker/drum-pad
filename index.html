@@ -5,14 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TestDrumPad</title>
     <style>
+      .center {
+        justify-content: center;
+        align-content: center;
+        text-align: center;
+      }
+      .title {
+        margin-top: 80px;
+        font-size: 50px;
+      }
+      .sentence {
+        font-size: 30px;
+      }
+
       .drum-machine {
-        margin-top: 30px;
+        margin-top: 60px;
         display: grid; /* CSS 그리드를 사용 */
         grid-template-columns: repeat(
           16,
-          20px
+          60px
         ); /* 4개의 열, 각 열의 너비는 100px */
-        grid-template-rows: repeat(1, 20px); /* 4개의 행, 각 행의 높이는 50px */
+        grid-template-rows: repeat(1, 60px); /* 4개의 행, 각 행의 높이는 50px */
         gap: 5px; /* 정사각형 사이에 10px의 간격 */
         justify-content: center; /* 중앙 정렬 */
         align-items: center; /* 중앙 정렬 */
@@ -35,9 +48,11 @@
     </style>
   </head>
   <body>
-    <h1>hello world!</h1>
-    <button id="start">재생</button>
-    <button id="stop">중지</button>
+    <h1 class="center title">hello world!</h1>
+    <div class="center">
+      <button class="sentence" id="start">재생</button>
+      <button class="sentence" id="stop">중지</button>
+    </div>
     <div class="drum" id="drumGrid">
       <div class="drum-machine" id="kickGrid">
         <div class="grid-item" data-sound="kick" id="1"></div>
