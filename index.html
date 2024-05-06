@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TestDrumPad</title>
+    <style>
+      .drum-machine {
+        margin-top: 30px;
+        display: grid; /* CSS 그리드를 사용 */
+        grid-template-columns: repeat(
+          16,
+          20px
+        ); /* 4개의 열, 각 열의 너비는 100px */
+        grid-template-rows: repeat(1, 20px); /* 4개의 행, 각 행의 높이는 50px */
+        gap: 5px; /* 정사각형 사이에 10px의 간격 */
+        justify-content: center; /* 중앙 정렬 */
+        align-items: center; /* 중앙 정렬 */
+      }
+      .grid-item {
+        background-color: #4caf50; /* 기본 배경색 (녹색) */
+        border: 1px solid #ccc; /* 테두리 */
+        width: 100%;
+        height: 100%;
+        text-align: center; /* 텍스트 중앙 정렬 */
+        font-size: 16px; /* 텍스트 크기 */
+        color: white; /* 텍스트 색상 */
+        display: flex; /* 플렉스 박스 사용 */
+        justify-content: center; /* 텍스트 가로 중앙 정렬 */
+        align-items: center; /* 텍스트 세로 중앙 정렬 */
+      }
+      .grid-item.active {
+        background-color: #3b82f6; /* 파란색 */
+      }
+    </style>
+  </head>
+  <body>
+    <h1>hello world!</h1>
+    <button id="start">재생</button>
+    <button id="stop">중지</button>
+    <div class="drum" id="drumGrid">
+      <div class="drum-machine" id="kickGrid">
+        <div class="grid-item" data-sound="kick" id="1"></div>
+        <div class="grid-item" data-sound="kick" id="2"></div>
+        <div class="grid-item" data-sound="kick" id="3"></div>
+        <div class="grid-item" data-sound="kick" id="4"></div>
+        <div class="grid-item" data-sound="kick" id="5"></div>
+        <div class="grid-item" data-sound="kick" id="6"></div>
+        <div class="grid-item" data-sound="kick" id="7"></div>
+        <div class="grid-item" data-sound="kick" id="8"></div>
+        <div class="grid-item" data-sound="kick" id="9"></div>
+        <div class="grid-item" data-sound="kick" id="10"></div>
+        <div class="grid-item" data-sound="kick" id="11"></div>
+        <div class="grid-item" data-sound="kick" id="12"></div>
+        <div class="grid-item" data-sound="kick" id="13"></div>
+        <div class="grid-item" data-sound="kick" id="14"></div>
+        <div class="grid-item" data-sound="kick" id="15"></div>
+        <div class="grid-item" data-sound="kick" id="16"></div>
+      </div>
+      <div class="drum-machine" id="hatGrid">
+        <div class="grid-item" data-sound="hat" id="1"></div>
+        <div class="grid-item" data-sound="hat" id="2"></div>
+        <div class="grid-item" data-sound="hat" id="3"></div>
+        <div class="grid-item" data-sound="hat" id="4"></div>
+        <div class="grid-item" data-sound="hat" id="5"></div>
+        <div class="grid-item" data-sound="hat" id="6"></div>
+        <div class="grid-item" data-sound="hat" id="7"></div>
+        <div class="grid-item" data-sound="hat" id="8"></div>
+        <div class="grid-item" data-sound="hat" id="9"></div>
+        <div class="grid-item" data-sound="hat" id="10"></div>
+        <div class="grid-item" data-sound="hat" id="11"></div>
+        <div class="grid-item" data-sound="hat" id="12"></div>
+        <div class="grid-item" data-sound="hat" id="13"></div>
+        <div class="grid-item" data-sound="hat" id="14"></div>
+        <div class="grid-item" data-sound="hat" id="15"></div>
+        <div class="grid-item" data-sound="hat" id="16"></div>
+      </div>
+      <div class="drum-machine" id="snareGrid">
+        <div class="grid-item" data-sound="snare" id="1"></div>
+        <div class="grid-item" data-sound="snare" id="2"></div>
+        <div class="grid-item" data-sound="snare" id="3"></div>
+        <div class="grid-item" data-sound="snare" id="4"></div>
+        <div class="grid-item" data-sound="snare" id="5"></div>
+        <div class="grid-item" data-sound="snare" id="6"></div>
+        <div class="grid-item" data-sound="snare" id="7"></div>
+        <div class="grid-item" data-sound="snare" id="8"></div>
+        <div class="grid-item" data-sound="snare" id="9"></div>
+        <div class="grid-item" data-sound="snare" id="10"></div>
+        <div class="grid-item" data-sound="snare" id="11"></div>
+        <div class="grid-item" data-sound="snare" id="12"></div>
+        <div class="grid-item" data-sound="snare" id="13"></div>
+        <div class="grid-item" data-sound="snare" id="14"></div>
+        <div class="grid-item" data-sound="snare" id="15"></div>
+        <div class="grid-item" data-sound="snare" id="16"></div>
+      </div>
+      <div class="drum-machine" id="clapGrid">
+        <div class="grid-item" data-sound="clap" id="1"></div>
+        <div class="grid-item" data-sound="clap" id="2"></div>
+        <div class="grid-item" data-sound="clap" id="3"></div>
+        <div class="grid-item" data-sound="clap" id="4"></div>
+        <div class="grid-item" data-sound="clap" id="5"></div>
+        <div class="grid-item" data-sound="clap" id="6"></div>
+        <div class="grid-item" data-sound="clap" id="7"></div>
+        <div class="grid-item" data-sound="clap" id="8"></div>
+        <div class="grid-item" data-sound="clap" id="9"></div>
+        <div class="grid-item" data-sound="clap" id="10"></div>
+        <div class="grid-item" data-sound="clap" id="11"></div>
+        <div class="grid-item" data-sound="clap" id="12"></div>
+        <div class="grid-item" data-sound="clap" id="13"></div>
+        <div class="grid-item" data-sound="clap" id="14"></div>
+        <div class="grid-item" data-sound="clap" id="15"></div>
+        <div class="grid-item" data-sound="clap" id="16"></div>
+      </div>
+      <div class="drum-machine" id="tomGrid">
+        <div class="grid-item" data-sound="tom" id="1"></div>
+        <div class="grid-item" data-sound="tom" id="2"></div>
+        <div class="grid-item" data-sound="tom" id="3"></div>
+        <div class="grid-item" data-sound="tom" id="4"></div>
+        <div class="grid-item" data-sound="tom" id="5"></div>
+        <div class="grid-item" data-sound="tom" id="6"></div>
+        <div class="grid-item" data-sound="tom" id="7"></div>
+        <div class="grid-item" data-sound="tom" id="8"></div>
+        <div class="grid-item" data-sound="tom" id="9"></div>
+        <div class="grid-item" data-sound="tom" id="10"></div>
+        <div class="grid-item" data-sound="tom" id="11"></div>
+        <div class="grid-item" data-sound="tom" id="12"></div>
+        <div class="grid-item" data-sound="tom" id="13"></div>
+        <div class="grid-item" data-sound="tom" id="14"></div>
+        <div class="grid-item" data-sound="tom" id="15"></div>
+        <div class="grid-item" data-sound="tom" id="16"></div>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.9.17/Tone.js"></script>
+    <script>
+      const drumSynths = {
+        kick: new Tone.MembraneSynth().toDestination(),
+        hat: new Tone.MetalSynth({
+          envelope: {
+            attack: 0.01,
+            decay: 0.1,
+            release: 0.3,
+          },
+        }).toDestination(),
+        snare: new Tone.NoiseSynth({
+          noise: {
+            type: "pink",
+            playbackRate: 3,
+          },
+          envelope: {
+            attack: 0.001,
+            decay: 0.13,
+            sustain: 0,
+            release: 0.03,
+          },
+        }).toDestination(),
+        clap: new Tone.NoiseSynth({
+          noise: {
+            type: "white",
+          },
+          envelope: {
+            attack: 0.01,
+            decay: 0.1,
+            sustain: 0,
+            release: 0.1,
+          },
+        }).toDestination(),
+        tom: new Tone.Sampler({
+          urls: {
+            // High Tom 드럼 소리 파일 지정
+            C3: "tom.mp3",
+          },
+          baseUrl: "sounds/drum/", // 샘플 파일이 저장된 폴더 경로
+          onload: () => {
+            console.log("Sampler loaded");
+          },
+        }).toDestination(),
+      };
+
+      // 활성화된 그리드 아이템을 추적
+      const activeSteps = new Set();
+
+      // 그리드 클릭 이벤트
+      const gridArray = [
+        document.getElementById("kickGrid"),
+        document.getElementById("hatGrid"),
+        document.getElementById("snareGrid"),
+        document.getElementById("clapGrid"),
+        document.getElementById("tomGrid"),
+      ];
+
+      gridArray.forEach((gridContainer) => {
+        gridContainer.addEventListener("click", (event) => {
+          const target = event.target;
+          if (target.classList.contains("grid-item")) {
+            const index = Array.from(gridContainer.children).indexOf(target);
+            const sound = target.dataset.sound;
+            const id = `${index}-${sound}`; // 고유한 식별자 생성
+
+            if (target.classList.toggle("active")) {
+              switch (sound) {
+                case "snare":
+                  drumSynths[sound].triggerAttackRelease("16n");
+                  break;
+                case "clap":
+                  drumSynths[sound].triggerAttackRelease("16n");
+                  break;
+                case "tom":
+                  drumSynths[sound].triggerAttack("C3");
+
+                  break;
+                default:
+                  drumSynths[sound].triggerAttackRelease("C1", "8n");
+                  break;
+              }
+              activeSteps.add(id);
+            } else {
+              activeSteps.delete(id);
+            }
+          }
+        });
+      });
+
+      const loop = new Tone.Loop((time) => {
+        // Transport.position을 분할하고 숫자로 변환
+        const [bar, beat, sixteenth] = Tone.Transport.position
+          .split(":")
+          .map(parseFloat);
+
+        // 16분음표마다 스텝을 계산
+        const step = bar * 16 + beat * 4 + sixteenth;
+
+        activeSteps.forEach((id) => {
+          const [index, sound] = id.split("-");
+          const currentStep = parseInt(index, 10);
+          if (currentStep === Math.floor(step % 16)) {
+            switch (sound) {
+              case "snare":
+                drumSynths[sound].triggerAttackRelease("16n", time);
+                break;
+              case "clap":
+                drumSynths[sound].triggerAttackRelease("16n");
+                break;
+              case "tom":
+                drumSynths[sound].triggerAttack("C3");
+                break;
+              default:
+                drumSynths[sound].triggerAttackRelease("C1", "16n", time);
+                break;
+            }
+          }
+        });
+      }, "16n");
+
+      document.getElementById("start").addEventListener("click", async () => {
+        await Tone.start(); // 사용자 상호작용 후 오디오 컨텍스트 활성화
+        Tone.Transport.start(); // 운송 시작
+        loop.start(0); // 루프 시작
+      });
+      document.getElementById("stop").addEventListener("click", () => {
+        loop.stop(); // 루프 중지
+        Tone.Transport.stop(); // 운송 중지
+      });
+    </script>
+  </body>
+</html>
